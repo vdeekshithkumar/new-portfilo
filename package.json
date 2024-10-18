@@ -12,6 +12,7 @@
     "@remix-run/node": "*",
     "@remix-run/react": "*",
     "@remix-run/serve": "*",
+    "@remix-run/vercel": "^1.19.3",
     "clsx": "^1.2.1",
     "etag": "^1.8.1",
     "framer-motion": "^10.6.1",
