@@ -21,8 +21,21 @@ const NavLinks = () => {
       </NavLink>
 
       <NavLink to="/blog" className={activeStyleCallback}>
-        Blog
+        Services
       </NavLink>
+
+      <NavLink to="/blog" className={activeStyleCallback}>
+        Gallery
+      </NavLink>
+
+      <NavLink to="/blog" className={activeStyleCallback}>
+        About
+      </NavLink>
+
+      <NavLink to="/blog" className={activeStyleCallback}>
+        Contact
+      </NavLink>
+    
     </>
   );
 };

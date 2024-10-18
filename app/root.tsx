@@ -62,10 +62,10 @@ function App() {
         <Links />
         <NonFlashOfWrongThemeEls ssrTheme={Boolean(data.theme)} />
       </head>
-      <body className="bg-background text-text-primary dark:bg-d-background dark:text-d-text-primary">
+      <body className="bg-background text-text-primary dark:bg-d-background dark:text-d-text-primary overflow-x-hidden">
         <div className="flex min-h-screen flex-col">
           <Header />
-          <main className="relative mx-auto my-0 box-border flex w-full max-w-7xl flex-[1] flex-grow flex-col py-[1em] px-[2em]">
+          <main className="relative overflow-hidden mx-auto my-0 box-border flex flex-[1] flex-grow flex-col">
             <Outlet />
           </main>
           <Footer />
