@@ -7,7 +7,7 @@ export const Logo = () => {
     <NavLink to="/" className="inline-block">
       <motion.img
         alt="Blog Logo"
-        src="/assets/images/logo.webp"
+        src=""
         className="block w-[75px]"
         width="75"
         height="50"

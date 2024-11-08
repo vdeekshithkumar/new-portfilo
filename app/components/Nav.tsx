@@ -20,19 +20,19 @@ const NavLinks = () => {
         Home
       </NavLink>
 
-      <NavLink to="/blog" className={activeStyleCallback}>
+      <NavLink to="/services" className={activeStyleCallback}>
         Services
       </NavLink>
 
-      <NavLink to="/blog" className={activeStyleCallback}>
+      <NavLink to="/gallery" className={activeStyleCallback}>
         Gallery
       </NavLink>
 
-      <NavLink to="/blog" className={activeStyleCallback}>
+      <NavLink to="/about" className={activeStyleCallback}>
         About
       </NavLink>
 
-      <NavLink to="/blog" className={activeStyleCallback}>
+      <NavLink to="/contact" className={activeStyleCallback}>
         Contact
       </NavLink>
     
@@ -81,8 +81,23 @@ const Nav = () => {
               </NavLink>
             </motion.div>
             <motion.div variants={mobileNavListVariant} {...mobileNavExitProps}>
-              <NavLink to="/blog" className={activeStyleCallback}>
-                Blog
+              <NavLink to="/services" className={activeStyleCallback}>
+                Services
+              </NavLink>
+            </motion.div>
+            <motion.div variants={mobileNavListVariant} {...mobileNavExitProps}>
+              <NavLink to="/gallery" className={activeStyleCallback}>
+                Gallery
+              </NavLink>
+            </motion.div>
+            <motion.div variants={mobileNavListVariant} {...mobileNavExitProps}>
+              <NavLink to="/about" className={activeStyleCallback}>
+                About
+              </NavLink>
+            </motion.div>
+            <motion.div variants={mobileNavListVariant} {...mobileNavExitProps}>
+              <NavLink to="/contact" className={activeStyleCallback}>
+                Contact
               </NavLink>
             </motion.div>
           </motion.div>
