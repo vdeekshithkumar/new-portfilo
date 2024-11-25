@@ -11,12 +11,12 @@ export interface BlogList {
 export const blogList: Array<BlogList> = [
   {
     slug: "Wding", 
-    title: "Wedding 👋",
+    title: "Wedding",
     publishDate: "",
     description:
       "Every blog starts with a single post. This is yours. Make it great.",
     readingTime: "1 min",
-    imageUrl: "./testing-image.jpg"
+    imageUrl: "public/assets/images/wedding1.jpg"
   },
   {
     slug: "Pre Wedding",
