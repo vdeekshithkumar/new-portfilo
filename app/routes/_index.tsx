@@ -79,9 +79,12 @@ export default function Index() {
   return (
     <div>
     <div
-        className="relative h-screen w-screen md:flex flex items-center justify-center bg-cover bg-center transition duration-1000 ease-in-out"
+        className="relative h-screen w-screen flex items-center justify-center bg-cover bg-center"
         style={{
           backgroundImage: `url(${bgImages[currentBgImageIndex]})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          transition: "background-image 1s ease-in-out",
         }}
       >
       <motion.div
@@ -124,14 +127,14 @@ export default function Index() {
     </div>
 
 
-    <div className="mx-0 my-[2em] flex min-h-[400px] flex-[1] items-center justify-center max-w-md:flex-col">
+    <div className="mx-0 my-[2em] flex min-h-[400px] flex-[1] items-center justify-center max-w-md:flex-col relative overflow-visible">
   <div className="relative w-full h-[500px] flex items-center justify-center">
     {/* Previous Button */}
     <motion.button
       whileTap={{ scale: 0.9 }}
       whileHover={{ scale: 1.1 }}
       onClick={prevImage}
-      className="absolute left-5 p-2 bg-gray-200 rounded-full shadow-md focus:outline-none active:bg-gray-300 dark:bg-gray-700 dark:text-white"
+      className="absolute left-5 z-10 p-2 bg-gray-200 rounded-full shadow-md focus:outline-none active:bg-gray-300 dark:bg-gray-700 dark:text-white"
     >
       &#8249;
     </motion.button>
@@ -142,7 +145,6 @@ export default function Index() {
         <motion.div
           key={index}
           className={`absolute w-[350px] h-[500px] transition-transform duration-500 ease-in-out ${getImagePosition(index)}`}
-          
         >
           <img
             src={image.src}
@@ -168,12 +170,13 @@ export default function Index() {
       whileTap={{ scale: 0.9 }}
       whileHover={{ scale: 1.1 }}
       onClick={nextImage}
-      className="absolute right-5 p-2 bg-gray-200 rounded-full shadow-md focus:outline-none active:bg-gray-300 dark:bg-gray-700 dark:text-white"
+      className="absolute right-5 z-10 p-2 bg-gray-200 rounded-full shadow-md focus:outline-none active:bg-gray-300 dark:bg-gray-700 dark:text-white"
     >
       &#8250;
     </motion.button>
   </div>
 </div>
+
 <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-800 p-10">
       <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">Contact Us</h2>
       <p className="text-lg mb-2 text-gray-600 dark:text-gray-300">
