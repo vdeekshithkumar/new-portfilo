@@ -6,18 +6,22 @@ import {
   imageLoadAnimationProps,
 } from "~/data/animationConfig";
 
-import IconName from './testing-image.jpg';
+import Engagement from '../../public/assets/images/enagagement.jpeg';
+import Wedding from '../../public/assets/images/wedding1.jpg';
+import Haldi from '../../public/assets/images/haldi.jpg';
+import Reception from '../../public/assets/images/reception.jpeg';
+import PreWedding from '../../public/assets/images/wedding2.jpg';
 
 export default function Gallery() {
   const images = [
-    { src: IconName, alt: "Image 1" },
-    { src: IconName, alt: "Image 2" },
-    { src: IconName, alt: "Image 3" },
-    { src: IconName, alt: "Image 4" },
-    { src: IconName, alt: "Image 5" },
-    { src: IconName, alt: "Image 6" },
-    { src: IconName, alt: "Image 7" },
-    { src: IconName, alt: "Image 8" },
+    { src: Wedding, alt: "Wedding" },
+    { src: Engagement, alt: "Engagement" },
+    { src: PreWedding, alt: "Image 3" },
+    { src: Haldi, alt: "Haldi" },
+    { src: Reception, alt: "Reception" },
+    { src: PreWedding, alt: "PreWedding" },
+    { src: Wedding, alt: "Image 7" },
+    { src: PreWedding, alt: "Image 8" },
   ];
 
   const getRandomHeight = () => {

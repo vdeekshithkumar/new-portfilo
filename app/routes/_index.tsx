@@ -5,20 +5,24 @@ import {
   containerVariants,
   imageLoadAnimationProps,
 } from "~/data/animationConfig";
-import IconName from './testing-image.jpg'; 
-import IconName2 from '../../public/assets/images/testimage2.jpg';
-import IconName3 from './testt3.jpg';
+import IconName from '../../public/assets/images/wedding1.jpg'; 
+import IconName3 from '../../public/assets/images/wedding2.jpg';
+import Engagement from '../../public/assets/images/enagagement.jpeg';
+import Wedding from '../../public/assets/images/wedding1.jpg';
+import Haldi from '../../public/assets/images/haldi.jpg';
+import Reception from '../../public/assets/images/reception.jpeg';
+import PreWedding from '../../public/assets/images/wedding2.jpg';
 
 const images = [
-  { src: IconName, label: "Engagement" },
-  { src: IconName2, label: "Wedding" },
-  { src: IconName, label: "Haldi" },
-  { src: IconName2, label: "Reception" },
-  { src: IconName, label: "Pre-Wedding" },
+  { src: Engagement, label: "Engagement" },
+  { src: Wedding, label: "Wedding" },
+  { src: Haldi, label: "Haldi" },
+  { src: Reception, label: "Reception" },
+  { src: PreWedding, label: "Pre-Wedding" },
 ];
 import "./style.css";
 
-const bgImages = [IconName3, IconName, IconName3, IconName];
+const bgImages = [Wedding, PreWedding, Haldi, Engagement];
 
 export default function Index() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
