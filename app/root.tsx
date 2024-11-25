@@ -25,6 +25,7 @@ import Header from "~/components/Header";
 import Footer from "~/components/Footer";
 
 import stylesheet from "~/styles/tailwind.css";
+import './routes/style.css';
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
@@ -62,10 +63,10 @@ function App() {
         <Links />
         <NonFlashOfWrongThemeEls ssrTheme={Boolean(data.theme)} />
       </head>
-      <body className="bg-background text-text-primary dark:bg-d-background dark:text-d-text-primary overflow-x-hidden">
-        <div className="flex min-h-screen flex-col">
+      <body className="bg-background text-text-primary dark:bg-d-background dark:text-d-text-primary overflow-y-scroll">
+        <div className="min-h-screen flex-col">
           <Header />
-          <main className="relative overflow-hidden mx-auto my-0 box-border flex flex-[1] flex-grow flex-col">
+          <main className="relative overflow-hidden mx-auto my-0 box-border flex-col">
             <Outlet />
           </main>
           <Footer />

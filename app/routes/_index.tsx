@@ -79,7 +79,7 @@ export default function Index() {
   return (
     <div>
     <div
-        className="relative h-screen w-screen flex items-center justify-center bg-cover bg-center transition duration-1000 ease-in-out"
+        className="relative h-screen w-screen md:flex flex items-center justify-center bg-cover bg-center transition duration-1000 ease-in-out"
         style={{
           backgroundImage: `url(${bgImages[currentBgImageIndex]})`,
         }}
