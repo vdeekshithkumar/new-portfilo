@@ -12,6 +12,7 @@ import Wedding from '../../public/assets/images/wedding1.jpg';
 import Haldi from '../../public/assets/images/haldi.jpg';
 import Reception from '../../public/assets/images/reception.jpeg';
 import PreWedding from '../../public/assets/images/wedding2.jpg';
+import WeddingBg from '../../public/assets/images/wedding-bg.jpg';
 
 const images = [
   { src: Engagement, label: "Engagement" },
@@ -19,7 +20,23 @@ const images = [
   { src: Haldi, label: "Haldi" },
   { src: Reception, label: "Reception" },
   { src: PreWedding, label: "Pre-Wedding" },
+  { src: WeddingBg, lablel: "Background wedding image"}
 ];
+const scrollingImages = [
+  { src: Engagement, label: "Engagement" },
+  { src: Wedding, label: "Wedding" },
+  { src: Haldi, label: "Haldi" },
+  { src: Reception, label: "Reception" },
+  { src: PreWedding, label: "Pre-Wedding" },
+  { src: WeddingBg, lablel: "Background wedding image"},
+  { src: Engagement, label: "Engagement" },
+  { src: Wedding, label: "Wedding" },
+  { src: Haldi, label: "Haldi" },
+  { src: Reception, label: "Reception" },
+  { src: PreWedding, label: "Pre-Wedding" },
+  { src: WeddingBg, lablel: "Background wedding image"}
+];
+
 import "./style.css";
 
 const bgImages = [Wedding, PreWedding, Haldi, Engagement];
@@ -76,6 +93,20 @@ export default function Index() {
     }
   };  
 
+  const [animationPaused, setAnimationPaused] = useState(false);
+
+  useEffect(() => {
+    // Animation cycle: Move for 4s, then pause for 2s
+    const interval = setInterval(() => {
+      setAnimationPaused((prev) => !prev);
+    }, 1000); // Total cycle duration: 4s animation + 2s pause
+
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, []);
+
+  const firstRowImages = scrollingImages.slice(0, 3); // First half of images
+  const secondRowImages = scrollingImages.slice(3); // Second half of images
+  
   return (
     <div>
     <div
@@ -176,22 +207,163 @@ export default function Index() {
     </motion.button>
   </div>
 </div>
-
-<div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-800 p-10">
-      <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">Contact Us</h2>
-      <p className="text-lg mb-2 text-gray-600 dark:text-gray-300">
-        📞 Phone: (123) 456-7890
-      </p>
-      <p className="text-lg mb-2 text-gray-600 dark:text-gray-300">
-        ✉️ Email: contact@nikhilphotography.com
-      </p>
-      <p className="text-lg mb-2 text-gray-600 dark:text-gray-300">
-        📍 Address: 123 Photography Lane, Art City, CA
-      </p>
-      <p className="text-lg text-gray-600 dark:text-gray-300">
-        Follow us on social media for updates and more!
+  <section className="relative h-screen flex items-center justify-center bg-black dark:bg-white mt-16">
+      <div className="text-center">
+        <h3 className="text-3xl font-bold mb-4 text-white dark:text-black">WHY CHOOSE US</h3>
+        <p className="text-lg max-w-2xl mx-auto text-white dark:text-black">
+          We provide professional photography services for all your memorable occasions.
+        </p>
+      </div>
+    </section>
+<section className="relative h-[100vh] overflow-hidden mt-20">
+    <div
+      className="absolute top-0 left-0 w-full h-full bg-center bg-cover"
+      style={{
+        backgroundImage: `url(${WeddingBg})`,
+        backgroundAttachment: "fixed",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }}
+    >
+      <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30"></div>
+    </div>
+    <div className="relative z-0 flex flex-col items-center justify-center h-full">
+      <h2 className="text-4xl font-bold text-white mb-4">Special Moments</h2>
+      <p className="text-lg text-white text-center max-w-2xl">
+        Capturing the beauty of every moment
       </p>
     </div>
+  </section>
+  <div
+      style={{
+        overflow: "hidden",
+        position: "relative",
+        width: "100%",
+        height: "400px",
+        backgroundColor: "#f7f7f7",
+      }}
+    >
+      {/* First Row - Scroll Left */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          animation: "scrollLeft 20s linear infinite",
+          whiteSpace: "nowrap",
+          marginTop: "39px"
+        }}
+      >
+        {[...scrollingImages, ...scrollingImages].map((image, index) => (
+          <div
+            key={`row1-${index}`}
+            style={{
+              flex: "0 0 auto",
+              width: "200px",
+              height: "150px",
+              borderRadius: "8px",
+              overflow: "hidden",
+              margin: "0 10px",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <img
+              src={image.src}
+              alt={image.label}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Second Row - Scroll Right */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          animation: "scrollLeft 20s linear infinite reverse",
+          whiteSpace: "nowrap",
+          marginTop: "20px",
+        }}
+      >
+        {[...scrollingImages, ...scrollingImages].map((image, index) => (
+          <div
+            key={`row2-${index}`}
+            style={{
+              flex: "0 0 auto",
+              width: "200px",
+              height: "150px",
+              borderRadius: "8px",
+              overflow: "hidden",
+              margin: "0 10px",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <img
+              src={image.src}
+              alt={image.label}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Add Keyframes CSS */}
+      <style>
+        {`
+          @keyframes scrollLeft {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-100%);
+            }
+          }
+        `}
+      </style>
+    </div>
+
+  <div
+      className="relative bg-cover bg-center min-h-screen flex items-center justify-center"
+    >
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+
+  <div className="relative z-0 container mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center gap-y-6 lg:gap-y-0">
+  {/* Left Section */}
+  <div className="w-full lg:w-1/2 text-white space-y-4">
+  {/* <div className="w-full lg:w-1/2 text-white text-center lg:text-right space-x-4 mt-6 lg:mt-0"> */}
+    <p className="text-3xl lg:text-5xl font-bold ml-10">Contact Us</p>
+    <p className="text-base lg:text-lg ml-10"> Email:{" "} nikhilstudio@gmail.com</p>
+    <p className="text-sm lg:text-lg italic ml-10">
+      Embark on Timeless Journeys,
+      <br />
+      Mangalore 575022
+    </p>
+  </div>
+  
+
+  {/* Right Section */}
+  <div className="w-full lg:w-1/2 text-white text-center lg:text-right space-y-4 mt-6 lg:mt-0">
+    <p className="text-3xl lg:text-5xl font-bold mr-10">+91 123456789</p>
+    <p className="text-base lg:text-lg mr-10">Reach us at the number above</p>
+    <p className="text-sm lg:text-lg italic mr-10">
+      Embark on Timeless Journeys,
+      <br />
+      Reach Out and Make Your Moments Last Forever.
+    </p>
+  </div>
+</div>
+
+    </div>
+    
     </div>
   );
 }
