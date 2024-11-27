@@ -22,10 +22,11 @@ export default function Gallery() {
     { src: PreWedding, alt: "PreWedding" },
     { src: Wedding, alt: "Image 7" },
     { src: PreWedding, alt: "Image 8" },
+    { src: Reception, alt: "Reception" }
   ];
 
   const getRandomHeight = () => {
-    const heights = ["250px", "300px", "350px"];
+    const heights = ["300px", "300px", "300px"];
     return heights[Math.floor(Math.random() * heights.length)];
   };
 

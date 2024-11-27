@@ -33,7 +33,7 @@ export const links: LinksFunction = () => [
 ];
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "Nikhil photography",
+  title: "Nikhil Studio",
   viewport: "width=device-width,initial-scale=1",
 });
 

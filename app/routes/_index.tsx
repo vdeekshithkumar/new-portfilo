@@ -334,7 +334,7 @@ export default function Index() {
       className="relative bg-cover bg-center min-h-screen flex items-center justify-center"
     >
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+      <div className="absolute inset-0 bg-black dark:bg-slate-500 bg-opacity-50"></div>
 
   <div className="relative z-0 container mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center gap-y-6 lg:gap-y-0">
   {/* Left Section */}
