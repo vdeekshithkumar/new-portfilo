@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   textVariants,
   containerVariants,
   imageLoadAnimationProps,
 } from "~/data/animationConfig";
-import IconName from '../../public/assets/images/wedding1.jpg'; 
-import IconName3 from '../../public/assets/images/wedding2.jpg';
+import { testimonials } from "~/data/testimonials";
 import Engagement from '../../public/assets/images/enagagement.jpeg';
 import Wedding from '../../public/assets/images/wedding1.jpg';
 import Haldi from '../../public/assets/images/haldi.jpg';
@@ -106,6 +105,28 @@ export default function Index() {
 
   const firstRowImages = scrollingImages.slice(0, 3); // First half of images
   const secondRowImages = scrollingImages.slice(3); // Second half of images
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextTestimonial = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length
+    );
+  };
+
+  const getPositionClass = (index: number) => {
+    const total = testimonials.length;
+    if (index === currentIndex) return "z-20 scale-100 opacity-100"; // Center card
+    if (index === (currentIndex - 1 + total) % total)
+      return "z-10 -translate-x-20 scale-90 opacity-50"; // Left card
+    if (index === (currentIndex + 1) % total)
+      return "z-10 translate-x-20 scale-90 opacity-50"; // Right card
+    return "opacity-0 pointer-events-none"; // Hidden card
+  };
   
   return (
     <div>
@@ -219,7 +240,7 @@ export default function Index() {
     <div
       className="absolute top-0 left-0 w-full h-full bg-center bg-cover"
       style={{
-        backgroundImage: `url(${WeddingBg})`,
+        backgroundImage: `url(${Wedding})`,
         backgroundAttachment: "fixed",
         backgroundPosition: "center",
         backgroundSize: "cover",
@@ -234,6 +255,58 @@ export default function Index() {
       </p>
     </div>
   </section>
+  
+  <section className="relative h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-800 py-10">
+
+  <div className="relative w-full max-w-7xl flex items-center justify-center">
+    {/* Previous Button */}
+    <motion.button
+      whileTap={{ scale: 0.9 }}
+      whileHover={{ scale: 1.2 }}
+      onClick={prevTestimonial}
+      className="absolute left-5 z-10 p-3 bg-gray-200 rounded-full shadow-md focus:outline-none active:bg-gray-300 dark:bg-gray-700 dark:text-white hover:bg-gray-300"
+    >
+      &#8249;
+    </motion.button>
+
+    {/* Testimonial Slideshow */}
+    <div
+      className="relative flex justify-center items-center w-full"
+      style={{ perspective: "1000px" }}
+    >
+      {testimonials.map((testimonial, index) => (
+        <motion.div
+          key={index}
+          className={`absolute w-[90%] md:w-[60%] lg:w-[40%] h-[200px] md:h-[250px] lg:h-[300px] bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg text-center transform transition-transform duration-500 ease-in-out ${getPositionClass(
+            index
+          )}`}
+          style={{
+            backdropFilter: index !== currentIndex ? "blur(5px)" : "none",
+          }}
+        >
+          <p className="text-sm md:text-base lg:text-lg italic mb-4 text-gray-800 dark:text-gray-200">
+            "{testimonial.feedback}"
+          </p>
+          <h4 className="text-base md:text-lg lg:text-xl font-bold text-gray-900 dark:text-white">
+            {testimonial.clientName}
+          </h4>
+          <p className="text-sm text-gray-600 dark:text-gray-400">{testimonial.location}</p>
+        </motion.div>
+      ))}
+    </div>
+
+    {/* Next Button */}
+    <motion.button
+      whileTap={{ scale: 0.9 }}
+      whileHover={{ scale: 1.2 }}
+      onClick={nextTestimonial}
+      className="absolute right-5 z-10 p-3 bg-gray-200 rounded-full shadow-md focus:outline-none active:bg-gray-300 dark:bg-gray-700 dark:text-white hover:bg-gray-300"
+    >
+      &#8250;
+    </motion.button>
+  </div>
+</section>
+
   <div
       style={{
         overflow: "hidden",
@@ -336,13 +409,13 @@ export default function Index() {
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black dark:bg-slate-500 bg-opacity-50"></div>
 
-  <div className="relative z-0 container mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center gap-y-6 lg:gap-y-0">
+  <div className="relative z-0 container mx-auto px-2 lg:px-16 flex flex-col lg:flex-row gap-y-6 lg:gap-y-0">
   {/* Left Section */}
-  <div className="w-full lg:w-1/2 text-white space-y-4">
+  <div className="w-full lg:w-1/2 text-white text-center lg:text-left space-y-4">
   {/* <div className="w-full lg:w-1/2 text-white text-center lg:text-right space-x-4 mt-6 lg:mt-0"> */}
-    <p className="text-3xl lg:text-5xl font-bold ml-10">Contact Us</p>
-    <p className="text-base lg:text-lg ml-10"> Email:{" "} nikhilstudio@gmail.com</p>
-    <p className="text-sm lg:text-lg italic ml-10">
+    <p className="text-3xl lg:text-5xl font-bold">Contact Us</p>
+    <p className="text-base lg:text-lg"> Email:{" "} nikhilstudio@gmail.com</p>
+    <p className="text-sm lg:text-lg italic">
       Embark on Timeless Journeys,
       <br />
       Mangalore 575022
@@ -352,9 +425,9 @@ export default function Index() {
 
   {/* Right Section */}
   <div className="w-full lg:w-1/2 text-white text-center lg:text-right space-y-4 mt-6 lg:mt-0">
-    <p className="text-3xl lg:text-5xl font-bold mr-10">+91 123456789</p>
-    <p className="text-base lg:text-lg mr-10">Reach us at the number above</p>
-    <p className="text-sm lg:text-lg italic mr-10">
+    <p className="text-3xl lg:text-5xl font-bold">+91 123456789</p>
+    <p className="text-base lg:text-lg">Reach us at the number above</p>
+    <p className="text-sm lg:text-lg italic">
       Embark on Timeless Journeys,
       <br />
       Reach Out and Make Your Moments Last Forever.
