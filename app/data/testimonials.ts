@@ -24,4 +24,16 @@ export const testimonials: Array<TestimonialList> = [
     clientName: "Rohit and Neha",
     location: "Bangalore",
   },
+  {
+    feedback:
+      "Our wedding moments were turned into timeless memories by Photofactoryfilms. Exceptional work, beyond expectations!",
+    clientName: "Rohit and Neha",
+    location: "Bangalore",
+  },
+  {
+    feedback:
+      "Our wedding moments were turned into timeless memories by Photofactoryfilms. Exceptional work, beyond expectations!",
+    clientName: "Rohit and Neha",
+    location: "Bangalore",
+  },
 ];
