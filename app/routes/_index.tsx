@@ -327,7 +327,7 @@ export default function Index() {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="absolute top-3 sm:top-5 left-3 sm:leftx-5 text-xs sm:text-sm md:text-lg font-semibold text-white bg-black bg-opacity-60 px-3 sm:px-4 py-1 rounded-br-lg"
+          className="absolute top-3 sm:top-5 left-3 sm:leftx-5 text-xs sm:text-sm md:text-lg font-semibold text-white bg-opacity-60 px-3 sm:px-4 py-1 rounded-br-lg"
         >
           <span className="font-mono tracking-tight">{image.label}</span>
         </motion.div>

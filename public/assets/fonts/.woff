@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Taken by Vultures';
+  src: url('/fonts/TakenByVultures.woff2') format('woff2'),
+       url('/fonts/TakenByVultures.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
