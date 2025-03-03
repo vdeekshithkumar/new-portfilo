@@ -3,7 +3,14 @@ import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { motion } from "framer-motion";
 import { textVariants, containerVariants } from "~/data/animationConfig";
-import { FaCameraRetro, FaRing, FaBirthdayCake, FaTv, FaLeaf, FaInstagram, FaHelicopter, FaCamera } from "react-icons/fa";
+import { FaCameraRetro, FaRing, FaBirthdayCake, FaTv, FaLeaf, FaCamera } from "react-icons/fa";
+
+// Motion Variants
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+  hover: { scale: 1.05, transition: { duration: 0.3 } },
+};
 
 export const loader: LoaderFunction = async () => {
   return json([]);
@@ -33,81 +40,99 @@ export default function Services() {
         ></div>
 
         <div className="container relative mx-auto py-16 sm:py-24 xl:px-12 2xl:px-36">
-          <div className="text-center text-white">
+        <motion.div 
+            initial={{ opacity: 0, y: -50 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.8 }}
+            className="text-center text-white"
+          >
             <h3 className="pb-4 text-sm font-medium uppercase tracking-widest text-red-200 sm:text-base">
               We Provide Anything & Everything Related to Photography
             </h3>
             <h2 className="mx-auto mb-6 text-center text-2xl font-semibold sm:text-3xl md:text-4xl">
               Capturing Moments, Creating Memories
             </h2>
-          </div>
+          </motion.div>
+
 
           <div className="flex flex-wrap px-4 lg:mt-28 lg:grid lg:grid-cols-3 lg:gap-6">
             {/* Pre-Wedding & Post-Wedding Shots */}
-            <div className="w-full p-4 sm:p-6 md:w-1/2 lg:w-auto lg:p-0 text-black">
-              <div className="h-full p-4 sm:p-6 shadow-xl bg-white transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+            <motion.div variants={cardVariants} initial="hidden" animate="visible" whileHover="hover"
+              className="w-full p-4 sm:p-6 md:w-1/2 lg:w-auto lg:p-0 text-black"
+            >
+              <div className="h-full p-4 sm:p-6 shadow-xl bg-white transition-all duration-300">
                 <FaRing className="text-3xl sm:text-5xl text-red-500 mb-4" />
                 <h4 className="mb-4 text-xl sm:text-2xl font-semibold">Pre & Post Wedding Shots</h4>
                 <p className="font-light text-sm sm:text-base">
                   Cherish the beauty of your wedding journey with our professional photography services.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Religious & Traditional Shoots */}
-            <div className="w-full p-4 sm:p-6 md:w-1/2 lg:w-auto lg:p-0">
-              <div className="h-full p-4 sm:p-6 shadow-xl bg-red-600 text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+            <motion.div variants={cardVariants} initial="hidden" animate="visible" whileHover="hover"
+              className="w-full p-4 sm:p-6 md:w-1/2 lg:w-auto lg:p-0"
+            >
+              <div className="h-full p-4 sm:p-6 shadow-xl bg-red-600 text-white transition-all duration-300">
                 <FaCameraRetro className="text-3xl sm:text-5xl mb-4" />
                 <h4 className="mb-4 text-xl sm:text-2xl font-semibold">Religious & Traditional Shoots</h4>
                 <p className="font-light text-sm sm:text-base">
                   Covering all traditional ceremonies like roce, haldi, nika, and more.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Small Functions */}
-            <div className="w-full p-4 sm:p-6 md:w-1/2 lg:w-auto lg:p-0 text-black">
-              <div className="h-full p-4 sm:p-6 shadow-xl bg-white transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+            {/* Birthdays & Anniversaries */}
+            <motion.div variants={cardVariants} initial="hidden" animate="visible" whileHover="hover"
+              className="w-full p-4 sm:p-6 md:w-1/2 lg:w-auto lg:p-0 text-black"
+            >
+              <div className="h-full p-4 sm:p-6 shadow-xl bg-white transition-all duration-300">
                 <FaBirthdayCake className="text-3xl sm:text-5xl text-red-500 mb-4" />
                 <h4 className="mb-4 text-xl sm:text-2xl font-semibold">Birthdays & Anniversaries</h4>
                 <p className="font-light text-sm sm:text-base">
                   Capturing special moments at birthdays, anniversaries, and small gatherings.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
             {/* LED Screens & Live Streaming */}
-            <div className="w-full p-4 sm:p-6 md:w-1/2 lg:w-auto lg:p-0">
-              <div className="h-full p-4 sm:p-6 shadow-xl bg-white text-black transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+            <motion.div variants={cardVariants} initial="hidden" animate="visible" whileHover="hover"
+              className="w-full p-4 sm:p-6 md:w-1/2 lg:w-auto lg:p-0"
+            >
+              <div className="h-full p-4 sm:p-6 shadow-xl bg-white text-black transition-all duration-300">
                 <FaTv className="text-3xl sm:text-5xl text-red-500 mb-4" />
                 <h4 className="mb-4 text-xl sm:text-2xl font-semibold">LED Screens & Live Streaming</h4>
                 <p className="font-light text-sm sm:text-base">
                   Professional live streaming and LED screen setups for seamless event coverage.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Drone Shoots */}
-            <div className="w-full p-4 sm:p-6 md:w-1/2 lg:w-auto lg:p-0">
-              <div className="h-full p-4 sm:p-6 shadow-xl bg-red-600 text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+            <motion.div variants={cardVariants} initial="hidden" animate="visible" whileHover="hover"
+              className="w-full p-4 sm:p-6 md:w-1/2 lg:w-auto lg:p-0"
+            >
+              <div className="h-full p-4 sm:p-6 shadow-xl bg-red-600 text-white transition-all duration-300">
                 <FaCamera className="text-3xl sm:text-5xl mb-4" />
                 <h4 className="mb-4 text-xl sm:text-2xl font-semibold">Drone Shoots</h4>
                 <p className="font-light text-sm sm:text-base">
                   Stunning aerial photography and videography to capture breathtaking views.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Funerals */}
-            <div className="w-full p-4 sm:p-6 md:w-1/2 lg:w-auto lg:p-0">
-              <div className="h-full p-4 sm:p-6 shadow-xl bg-white text-black transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+            {/* Funeral Photography */}
+            <motion.div variants={cardVariants} initial="hidden" animate="visible" whileHover="hover"
+              className="w-full p-4 sm:p-6 md:w-1/2 lg:w-auto lg:p-0"
+            >
+              <div className="h-full p-4 sm:p-6 shadow-xl bg-white text-black transition-all duration-300">
                 <FaLeaf className="text-3xl sm:text-5xl text-red-500 mb-4" />
                 <h4 className="mb-4 text-xl sm:text-2xl font-semibold">Funeral Photography</h4>
                 <p className="font-light text-sm sm:text-base">
                   Respectful and professional photography to commemorate loved ones.
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   textVariants,
@@ -12,6 +12,7 @@ import Haldi from '../../public/assets/images/haldi.jpg';
 import Reception from '../../public/assets/images/reception.jpeg';
 import PreWedding from '../../public/assets/images/wedding2.jpg';
 import WeddingBg from '../../public/assets/images/wedding-bg.jpg';
+import { useInView } from "react-intersection-observer";
 
 const images = [
   { src: Engagement, label: "Engagement" },
@@ -157,7 +158,12 @@ export default function Index() {
       return "z-10 translate-x-20 scale-90 opacity-50"; // Right card
     return "opacity-0 pointer-events-none"; // Hidden card
   };
+
+  const { ref: ref1, inView: inView1 } = useInView({ triggerOnce: true });
+  const { ref: ref2, inView: inView2 } = useInView({ triggerOnce: true });
   
+ 
+
   return (
     <div>
     <div
@@ -187,11 +193,22 @@ export default function Index() {
       </motion.div>
     </div>
 
-<section className="py-4 md:py-8 bg-white">
-      <div className="container mx-auto py-12 xl:px-12 2xl:px-36">
+    <section className="py-4 md:py-8 bg-white">
+      <motion.div
+        ref={ref1}
+        initial={{ opacity: 0, y: 50 }}
+        animate={inView1 ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="container mx-auto py-12 xl:px-12 2xl:px-36"
+      >
         <div className="flex flex-col items-stretch lg:flex-row">
           {/* Image Section */}
-          <div className="relative flex-1 p-10 lg:w-1/2">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={inView1 ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative flex-1 p-10 lg:w-1/2"
+          >
             <div className="absolute bottom-0 right-0 z-0 h-4/5 w-4/5 bg-gray-800"></div>
             <img
               className="relative bottom-10 right-10 aspect-square object-cover lg:absolute xl:relative xl:bottom-0 xl:right-0"
@@ -204,10 +221,15 @@ export default function Index() {
                 <div>Years in Photography</div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Text Section */}
-          <div className="px-14 pt-10 lg:w-1/2">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={inView1 ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="px-14 pt-10 lg:w-1/2"
+          >
             <h3 className="pb-4 text-base font-medium uppercase tracking-widest text-red-600">
               Creating Lasting Memories
             </h3>
@@ -242,12 +264,12 @@ export default function Index() {
                 <div className="tracking-wide text-gray-600 text-xs sm:text-sm md:text-base">
                   We are dedicated to creating stunning visuals that celebrate love, joy, and beauty.
                 </div>
+                </div>
               </div>
             </div>
-            </div>      
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
 
     
@@ -305,7 +327,7 @@ export default function Index() {
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
+          transition={{ delay: 0.1, duration: 0.8 }}
           className="absolute top-3 sm:top-5 left-3 sm:leftx-5 text-xs sm:text-sm md:text-lg font-semibold text-white bg-opacity-60 px-3 sm:px-4 py-1 rounded-br-lg"
         >
           <span className="font-mono tracking-tight">{image.label}</span>
@@ -456,7 +478,7 @@ export default function Index() {
         backgroundColor: "#f7f7f7",
       }}
     >
-    <div className="container relative mx-auto py-8 xl:px-12 2xl:px-36">
+    <div className="container relative mx-auto py-1 sm:py-10 md:py-8 xl:px-12 2xl:px-36">
   <h3 className="pb-4 text-center text-xs sm:text-sm md:text-base font-medium uppercase tracking-widest text-[var(--primary-color)]">
     Our Photography Portfolio
   </h3>
@@ -562,67 +584,87 @@ export default function Index() {
     </div>
 
 
-    <section className="relative bg-white code-section">
-  <div
-    className="absolute inset-0 h-[20rem] sm:h-[25rem] md:h-[30rem] w-full bg-cover bg-center object-cover brightness-[.25]"
-    style={{
-      backgroundImage:
-        "url(https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/69ffb621-5583-4f08-e7c5-1dea4ffa3000/public)",
-    }}
-  ></div>
-  <div className="container relative mx-auto px-6 py-16 sm:py-20 md:py-24 xl:px-12 2xl:px-36">
-    <div className="text-center text-white">
-      <h3 className="pb-2 text-sm sm:text-base md:text-lg font-medium uppercase tracking-widest text-[var(--primary-color)]">
-        Connect with Us
-      </h3>
-      <h2 className="mx-auto mb-4 text-xl sm:text-2xl md:text-3xl font-semibold">
-        <span className="border-b-4 border-[var(--primary-color)] [font-family:var(--font-family-heading)]">
-          Let's Capture Your Love Story
-        </span>
-      </h2>
-      <p className="mb-6 text-sm sm:text-base md:text-lg text-center font-light">
-        We’re here to turn your moments into timeless memories. Whether you're planning a wedding, a pre-wedding
-        celebration, or a fashion shoot, our dedicated team is ready to help you create stunning visuals that reflect
-        your unique narrative.
-      </p>
-    </div>
-    <div className="flex flex-col bg-[#ffffff] p-2 shadow-2xl lg:flex-row">
-      <div className="relative overflow-hidden lg:w-full">
-        <div
-          className="absolute inset-0 h-[20rem] sm:h-[25rem] md:h-[30rem] w-full bg-cover bg-center object-cover brightness-[.25]"
-          style={{
-            backgroundImage:
-              "url(https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/610f3021-e4d8-466d-8918-e6f22b50d400/public)",
-          }}
-        ></div>
-        <div className="relative p-4 sm:p-6 md:p-10 text-white">
-          <h3 className="pb-2 text-sm sm:text-base md:text-lg font-medium uppercase tracking-widest">
-            Get in Touch Anytime
+    <motion.section
+      ref={ref2}
+      initial={{ opacity: 0, y: 50 }}
+      animate={inView2 ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="relative bg-white code-section"
+    >
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 h-[20rem] sm:h-[25rem] md:h-[30rem] w-full bg-cover bg-center object-cover brightness-[.25]"
+        style={{
+          backgroundImage:
+            "url(https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/69ffb621-5583-4f08-e7c5-1dea4ffa3000/public)",
+        }}
+      ></div>
+
+      {/* Container */}
+      <div className="container relative mx-auto px-6 py-16 sm:py-20 md:py-24 xl:px-12 2xl:px-36">
+        {/* Heading Section */}
+        <div className="text-center text-white">
+          <h3 className="pb-2 text-sm sm:text-base md:text-lg font-medium uppercase tracking-widest text-[var(--primary-color)]">
+            Connect with Us
           </h3>
-          <h2 className="mx-auto mb-4 text-lg sm:text-xl md:text-2xl font-medium">
-            <span className="border-b-4 border-[var(--primary-color)]">Contact Information</span>
+          <h2 className="mx-auto mb-4 text-xl sm:text-2xl md:text-3xl font-semibold">
+            <span className="border-b-4 border-[var(--primary-color)] [font-family:var(--font-family-heading)]">
+              Let's Capture Your Love Story
+            </span>
           </h2>
-          <div className="mb-2 flex items-center text-xs sm:text-sm md:text-base font-light tracking-wider text-light-text-color">
-            <FaPhone className="mr-2 w-4 sm:w-5 md:w-6 flex-none text-primary-color" />
-            <span>+91 9845203348</span>
-          </div>
-          <div className="mb-2 flex items-center text-xs sm:text-sm md:text-base font-light tracking-wider text-light-text-color">
-            <FaEnvelope className="mr-2 w-4 sm:w-5 md:w-6 flex-none text-primary-color" />
-            <span className="w-[90%] break-words">nikhilstudio1996@gmail.com</span>
-          </div>
-          <div className="mb-2 flex items-center text-xs sm:text-sm md:text-base font-light tracking-wider text-light-text-color">
-            <FaMapMarkerAlt className="mr-2 w-4 sm:w-5 md:w-6 flex-none text-primary-color" />
-            <span>Mangaluru</span>
-          </div>
-          <div className="mb-2 flex items-center text-xs sm:text-sm md:text-base font-light tracking-wider text-light-text-color">
-            <FaClock className="mr-2 w-4 sm:w-5 md:w-6 flex-none text-primary-color" />
-            <span>Mon - Fri: 9:00am - 5:00pm</span>
-          </div>
+          <p className="mb-6 text-sm sm:text-base md:text-lg text-center font-light">
+            We’re here to turn your moments into timeless memories. Whether you're planning a wedding, a pre-wedding
+            celebration, or a fashion shoot, our dedicated team is ready to help you create stunning visuals that reflect
+            your unique narrative.
+          </p>
         </div>
+
+        {/* Contact Information Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={inView2 ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          className="flex flex-col bg-[#ffffff] p-2 shadow-2xl lg:flex-row"
+        >
+          {/* Image with Overlay */}
+          <div className="relative overflow-hidden lg:w-full">
+            <div
+              className="absolute inset-0 h-[20rem] sm:h-[25rem] md:h-[30rem] w-full bg-cover bg-center object-cover brightness-[.25]"
+              style={{
+                backgroundImage:
+                  "url(https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/610f3021-e4d8-466d-8918-e6f22b50d400/public)",
+              }}
+            ></div>
+            <div className="relative p-4 sm:p-6 md:p-10 text-white">
+              <h3 className="pb-2 text-sm sm:text-base md:text-lg font-medium uppercase tracking-widest">
+                Get in Touch Anytime
+              </h3>
+              <h2 className="mx-auto mb-4 text-lg sm:text-xl md:text-2xl font-medium">
+                <span className="border-b-4 border-[var(--primary-color)]">Contact Information</span>
+              </h2>
+
+              {/* Contact Details */}
+              <div className="mb-2 flex items-center text-xs sm:text-sm md:text-base font-light tracking-wider text-light-text-color">
+                <FaPhone className="mr-2 w-4 sm:w-5 md:w-6 flex-none text-primary-color" />
+                <span>+91 9845203348</span>
+              </div>
+              <div className="mb-2 flex items-center text-xs sm:text-sm md:text-base font-light tracking-wider text-light-text-color">
+                <FaEnvelope className="mr-2 w-4 sm:w-5 md:w-6 flex-none text-primary-color" />
+                <span className="w-[90%] break-words">nikhilstudio1996@gmail.com</span>
+              </div>
+              <div className="mb-2 flex items-center text-xs sm:text-sm md:text-base font-light tracking-wider text-light-text-color">
+                <FaMapMarkerAlt className="mr-2 w-4 sm:w-5 md:w-6 flex-none text-primary-color" />
+                <span>Mangaluru</span>
+              </div>
+              <div className="mb-2 flex items-center text-xs sm:text-sm md:text-base font-light tracking-wider text-light-text-color">
+                <FaClock className="mr-2 w-4 sm:w-5 md:w-6 flex-none text-primary-color" />
+                <span>Mon - Fri: 9:00am - 5:00pm</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
-    </div>
-  </div>
-</section>
+    </motion.section>
 
     
     </div>
