@@ -9,7 +9,7 @@ const activeStyleCallback = ({ isActive }: { isActive: boolean }) =>
 
 export const Footer = () => {
   return (
-    <footer className="bg-dark-background-color code-section">
+    <footer className="bg-dark-background-color code-section border-t-2 border-dark-border-color ">
   <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-12 2xl:px-36">
     <div className="grid grid-cols-1 pt-4 md:grid-cols-3 lg:grid-cols-4 lg:space-x-24">
       <div className="mb-8">

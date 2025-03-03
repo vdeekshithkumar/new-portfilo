@@ -187,27 +187,6 @@ export default function Index() {
       </motion.div>
     </div>
 
-    {/* <div
-      className="relative h-screen w-screen flex items-center justify-center bg-cover bg-center transition duration-1000 ease-in-out"
-      >
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="text-center"
-      >
-        <motion.h1
-          variants={textVariants}
-          className="mb-[0.5em] text-2xl font-bold leading-[1.3] md:text-4xl text-black dark:text-white" // Set dark text for dark mode
-        >
-          Welcome to Nikhil Photography
-        </motion.h1>
-        <motion.p variants={textVariants} className="text-lg md:text-xl text-black dark:text-white">
-          some intro 
-        </motion.p>
-      </motion.div>
-    </div> */}
-
 <section className="py-4 md:py-8 bg-white">
       <div className="container mx-auto py-12 xl:px-12 2xl:px-36">
         <div className="flex flex-col items-stretch lg:flex-row">
@@ -350,24 +329,24 @@ export default function Index() {
 </section>
 
 <section className="relative h-[100vh] overflow-hidden mt-20">
-    <div
-      className="absolute top-0 left-0 w-full h-full bg-center bg-cover"
-      style={{
-        backgroundImage: `url(${Wedding})`,
-        backgroundAttachment: "fixed",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-      }}
-    >
-      <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30"></div>
-    </div>
-    <div className="relative z-0 flex flex-col items-center justify-center h-full">
-      <h2 className="text-4xl font-bold text-white mb-4">Special Moments</h2>
-      <p className="text-lg text-white text-center max-w-2xl">
-        Capturing the beauty of every moment
-      </p>
-    </div>
-  </section>
+  <div
+    className="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-no-repeat"
+    style={{
+      backgroundImage: `url(${Wedding})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      // Remove background-attachment: fixed for better mobile compatibility
+    }}
+  >
+    <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30"></div>
+  </div>
+  <div className="relative flex flex-col items-center justify-center h-full">
+    <h2 className="text-4xl font-bold text-white mb-4">Special Moments</h2>
+    <p className="text-lg text-white text-center max-w-2xl">
+      Capturing the beauty of every moment
+    </p>
+  </div>
+</section>
   
   <section className="code-section">
   <div className="container relative mx-auto px-4 py-16 sm:py-20 md:py-24 xl:px-12 2xl:px-36">

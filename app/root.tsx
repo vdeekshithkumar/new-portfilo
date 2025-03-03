@@ -29,7 +29,7 @@ import './routes/style.css';
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
-  { rel: "icon", href: "public/assets/images/wedding1.jpg", type: "image/jpg" }, 
+  { rel: "icon", href: "assets/images/wedding1.jpg", type: "image/jpg" }, 
 ];
 export const meta: MetaFunction = () => ({
   charset: "utf-8",

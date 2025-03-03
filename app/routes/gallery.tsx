@@ -34,10 +34,18 @@ export default function Gallery() {
     return heights[Math.floor(Math.random() * heights.length)];
   };
 
+  // Add state to track which image is active/tapped
+  const [activeImage, setActiveImage] = useState(null);
+
+  // Handle tap/click on mobile
+  const handleImageClick = (index:any) => {
+    setActiveImage(activeImage === index ? null : index);
+  };
+
   return (
     <div className="relative min-h-screen w-full bg-gradient-to-b from-gray-200 to-gray-300 flex flex-col items-center justify-start">
-      {/* Header Section */}
-      <motion.div
+     {/* Header Section */}
+     <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -88,17 +96,24 @@ export default function Gallery() {
               key={index}
               className="overflow-hidden rounded-2xl shadow-lg border border-gray-200 relative group"
               style={{ height: getRandomHeight() }}
-              whileHover={{ scale: 1.03 }}
+              whileHover={{ scale: 1.03 }} // Still works on desktop
               transition={{ duration: 0.3 }}
+              onClick={() => handleImageClick(index)} // Added for mobile tap
             >
               <img
                 src={image.src}
                 alt={image.alt}
-                className="object-cover w-full h-full rounded-2xl hover:opacity-90 transition duration-300"
+                className="object-cover w-full h-full rounded-2xl transition duration-300"
                 {...imageLoadAnimationProps}
               />
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
-                <p className="text-white text-base sm:text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div 
+                className={`absolute inset-0 bg-black transition-all duration-300 flex items-center justify-center
+                  ${activeImage === index ? 'bg-opacity-40' : 'bg-opacity-0 group-hover:bg-opacity-40'}`}
+              >
+                <p 
+                  className={`text-white text-base sm:text-lg font-semibold transition-opacity duration-300
+                    ${activeImage === index ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+                >
                   {image.title}
                 </p>
               </div>
@@ -147,6 +162,16 @@ export default function Gallery() {
           }
           to {
             transform: translateX(-100%);
+          }
+        }
+        
+        /* Optional: Disable hover effects on mobile */
+        @media (max-width: 640px) {
+          .group:hover .group-hover\\:bg-opacity-40 {
+            background-opacity: 0;
+          }
+          .group:hover .group-hover\\:opacity-100 {
+            opacity: 0;
           }
         }
       `}</style>
