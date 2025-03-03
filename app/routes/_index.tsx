@@ -328,25 +328,47 @@ export default function Index() {
   </div>
 </section>
 
-<section className="relative h-[100vh] overflow-hidden mt-20">
+<section
+  className="relative h-[100vh] overflow-hidden mt-20"
+  style={{
+    backgroundImage: `url(${Wedding})`,
+    backgroundAttachment: "fixed",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+  }}
+>
   <div
-    className="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-no-repeat"
+    className="absolute top-0 left-0 w-full h-full bg-center bg-cover"
     style={{
       backgroundImage: `url(${Wedding})`,
-      backgroundSize: "cover",
+      backgroundAttachment: "fixed",
       backgroundPosition: "center",
-      // Remove background-attachment: fixed for better mobile compatibility
+      backgroundSize: "cover",
     }}
   >
-    <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30"></div>
+    <div
+      className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30"
+    ></div>
   </div>
-  <div className="relative flex flex-col items-center justify-center h-full">
+  <div className="relative z-0 flex flex-col items-center justify-center h-full">
     <h2 className="text-4xl font-bold text-white mb-4">Special Moments</h2>
     <p className="text-lg text-white text-center max-w-2xl">
       Capturing the beauty of every moment
     </p>
   </div>
+  {/* Media query for mobile screens */}
+  <style>
+    {`
+      @media (max-width: 768px) {
+        .relative h-[100vh] .overflow-hidden .mt-20 .absolute .top-0 .left-0 .w-full .h-full .bg-center .bg-cover {
+          background-size: contain !important;
+          background-attachment: scroll !important;
+        }
+      }
+    `}
+  </style>
 </section>
+
   
   <section className="code-section">
   <div className="container relative mx-auto px-4 py-16 sm:py-20 md:py-24 xl:px-12 2xl:px-36">
