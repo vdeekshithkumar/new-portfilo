@@ -60,24 +60,25 @@ export default function About() {
     </motion.div>
 
     {/* Background Slideshow */}
-    <motion.div
-      key={currentImageIndex}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      className="relative w-full h-64 sm:h-80 md:h-[450px] bg-gray-200 rounded-xl overflow-hidden shadow-lg"
-      style={{
-        backgroundImage: `url(${bgImages[currentImageIndex]})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <div className="absolute inset-0 bg-black/20 flex items-center justify-center transition-opacity duration-500">
-        <p className="text-white text-lg sm:text-xl font-medium tracking-wide">
-          Wedding Moments
-        </p>
-      </div>
-    </motion.div>
+<motion.div
+  key={currentImageIndex}
+  initial={{ opacity: 0, scale: 0.8 }} // Start smaller and faded out
+  animate={{ opacity: 1, scale: 1 }} // Scale up to normal size and fade in
+  transition={{ duration: 0.8, ease: "easeOut" }} // Smooth transition effect
+  className="relative w-full h-64 sm:h-80 md:h-[450px] bg-gray-200 rounded-xl overflow-hidden shadow-lg"
+  style={{
+    backgroundImage: `url(${bgImages[currentImageIndex]})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+>
+  <div className="absolute inset-0 bg-black/20 flex items-center justify-center transition-opacity duration-500">
+    <p className="text-white text-lg sm:text-xl font-medium tracking-wide">
+      Wedding Moments
+    </p>
+  </div>
+</motion.div>
+
   </div>
 
   {/* Meet the Photographer Section */}
